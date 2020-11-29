@@ -99,4 +99,23 @@ const save = () => {
     let value = document.getElementById(id).value;
     return value;
   };
-  
+/// Method to parse the input data to the lightweight json type and then push the data to the browser local storage
+function createAndUpdateStorage(employeePayrollData){
+
+    /// EmployeePayrollList will be the array of object parsed to JSON format
+    let employeePayrollList= JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    /// If the employeePayrollData list is not empty i.e. already created then push the incoming data onto the local storage
+    if(employeePayrollList!=undefined)
+    {
+        employeePayrollList.push(employeePayrollData);
+    }
+    else
+    {
+        employeePayrollList=[employeePayrollData];
+    }
+    /// Displaying the alert popup for the user one more time before the local storage has been populated
+    alert(employeePayrollList.toString());
+    /// Push the data to the local storage
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
+  }
+    
